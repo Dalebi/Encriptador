@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+
+    var cifrar = ['a','e','i','o','u'];
+    var descifrar = ['ai', 'enter', 'imes', 'ober', 'ufat'];
+    
+    function encripta(){
+       input = document.querySelector('#maestro').value;
+    
+       
+        for(j=0;j<cifrar.length;j++){
+            input = input.replaceAll(cifrar[j], descifrar[j]);
+        }
+
+         document.querySelector('#txt_cifrado').innerHTML = input;
+         document.querySelector('#txt_cifrado').setAttribute('style', 'display:block');
+         document.querySelector('#img_mono').setAttribute('style', 'display:none');
+
+
+    }//function encripta(
+
+
+    function desencripta(){
+       input = document.querySelector('#maestro').value;
+       
+        for(j=cifrar.length;j>=0;j--){
+            input = input.replaceAll(descifrar[j], cifrar[j]);
+        }
+        document.querySelector('#txt_cifrado').innerHTML = input;
+        document.querySelector('#txt_cifrado').setAttribute('style', 'display:block');
+        document.querySelector('#img_mono').setAttribute('style', 'display:none');
+        
+    }//function desencripta(
+
+
+    function copiar(){
+        copyText = document.querySelector('#txt_cifrado').innerHTML;
+        //navigator.clipboard.writeText(copyText);
+        navigator.clipboard.writeText(copyText).then(
+    () => {
+        alert('Texto "' + copyText + '" Copiado al portapapeles');
+    },
+    () => {
+        /* clipboard write failed */
+    }
+    );
+      
+    }
+
+</script>
+<body>
+
+    
+    <img class="logo" src="">
+
+
+<div>
+        <h1>Encriptador</h1>
+        <textarea name="maestro" id="maestro" class="frame3" placeholder="Ingrese aqui el texto"></textarea>
+</div>
+
+<div class="resultDiv">
+     <textarea type="text" name="txt_cifrado" id="txt_cifrado" value="" class="text" style="display: none;" ></textarea>
+    <img src="1.png" alt="" id="img_mono" class="mono"  >
+        
+    <button onclick="copiar()" class="copyBtn" ><div class="text">Copiar</div></button>
+</div>
+
+<div class="botones">
+    <button onclick="encripta()" class="encripta"><div class="text">Encriptar</div></button>
+    <button onclick="desencripta()" class="desencripta"><div class="text">Desencriptar</div></button>
+</div>
+
+
+</body>
+</html>
